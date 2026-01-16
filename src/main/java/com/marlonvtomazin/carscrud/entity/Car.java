@@ -25,6 +25,9 @@ public class Car {
     @Column(nullable = false)
     private Integer year;
 
+    @Column(nullable = false)
+    private Integer color;
+
     @Column(unique = true, nullable = false, length = 8)
     private String plate;
 
