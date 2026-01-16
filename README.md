@@ -18,7 +18,7 @@ This project demonstrates clean architecture, REST best practices, and basic CRU
 
 ## 🛠️ Technologies Used
 
-- Java 12
+- Java 25
 - Spring Boot
 - Spring Web
 - Spring Data JPA
