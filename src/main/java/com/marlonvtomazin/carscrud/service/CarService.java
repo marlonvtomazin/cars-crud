@@ -1,11 +1,61 @@
 package com.marlonvtomazin.carscrud.service;
 
+import com.marlonvtomazin.carscrud.entity.Car;
 import com.marlonvtomazin.carscrud.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class CarService {
     private final CarRepository carRepository;
+
+    @Transactional
+    public Car save(Car car) {
+        return carRepository.save(car);
+    }
+
+    @Transactional(readOnly = true)
+    public Car findById(Long id) {
+        return carRepository.findById(id).orElseThrow(
+            () -> new RuntimeException(("Car not found"))
+        );
+    }
+
+    @Transactional
+    public Car updatePartial(Long id, Car carDetails) {
+        Car foundCar = this.findById(id);
+
+        if (carDetails.getBrand() != null) {
+            foundCar.setBrand(carDetails.getBrand());
+        }
+        if (carDetails.getModel() != null) {
+            foundCar.setModel(carDetails.getModel());
+        }
+        if (carDetails.getYear() != null) {
+            foundCar.setYear(carDetails.getYear());
+        }
+        if (carDetails.getPlate() != null) {
+            foundCar.setPlate(carDetails.getPlate());
+        }
+        if (carDetails.getKilometers() != null) {
+            foundCar.setKilometers(carDetails.getKilometers());
+        }
+
+        return carRepository.save(foundCar);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Car> findAll() {
+        return carRepository.findAll();
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Car foundCar = this.findById(id);
+        carRepository.delete(foundCar);
+    }
 }
