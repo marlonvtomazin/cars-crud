@@ -26,7 +26,10 @@ public class Car {
     private Integer year;
 
     @Column(nullable = false)
-    private Integer color;
+    private String color;
+
+    @Column(nullable = false)
+    private Integer kilometers;
 
     @Column(unique = true, nullable = false, length = 8)
     private String plate;
