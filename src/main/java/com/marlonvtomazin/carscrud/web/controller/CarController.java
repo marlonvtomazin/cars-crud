@@ -2,6 +2,10 @@ package com.marlonvtomazin.carscrud.web.controller;
 
 import com.marlonvtomazin.carscrud.entity.Car;
 import com.marlonvtomazin.carscrud.service.CarService;
+import com.marlonvtomazin.carscrud.web.dto.CarCreateDto;
+import com.marlonvtomazin.carscrud.web.dto.CarResponseDto;
+import com.marlonvtomazin.carscrud.web.dto.CarUpdateDto;
+import com.marlonvtomazin.carscrud.web.dto.mapper.CarMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,27 +20,29 @@ public class CarController {
     private final CarService carService;
 
     @PostMapping
-    public ResponseEntity<Car> create (@RequestBody Car car) {
-        Car savedCar = carService.save(car);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCar);
+    public ResponseEntity<CarResponseDto> create (@RequestBody CarCreateDto createDto) {
+        Car savedCar = carService.save(CarMapper.toCreateEntity(createDto));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(CarMapper.toDto(savedCar));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Car> getById (@PathVariable Long id) {
+    public ResponseEntity<CarResponseDto> getById (@PathVariable Long id) {
         Car foundCar = carService.findById(id);
-        return ResponseEntity.ok(foundCar);
+        return ResponseEntity.ok(CarMapper.toDto(foundCar));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Car> updatePartial(@PathVariable Long id, @RequestBody Car carDetails) {
-        Car updatedCar = carService.updatePartial(id, carDetails);
-        return ResponseEntity.ok(updatedCar);
+    public ResponseEntity<CarResponseDto> updatePartial(@PathVariable Long id, @RequestBody CarUpdateDto updateDto) {
+        Car updatedCar = carService.updatePartial(id, CarMapper.toUpdateEntity(updateDto));
+        return ResponseEntity.ok(CarMapper.toDto(updatedCar));
     }
 
     @GetMapping()
-    public ResponseEntity<List<Car>> getAll () {
+    public ResponseEntity<List<CarResponseDto>> getAll () {
         List<Car> foundCars = carService.findAll();
-        return ResponseEntity.ok(foundCars);
+        return ResponseEntity.ok(CarMapper.toListDto(foundCars));
     }
 
     @DeleteMapping("/{id}")
