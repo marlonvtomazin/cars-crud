@@ -1,0 +1,3 @@
+insert into cars (id, plate, brand, model, color, car_year, kilometers) values(10, 'ABC-1234', 'Ford', 'Mustang', 'Black', 2023, 12321);
+insert into cars (id, plate, brand, model, color, car_year, kilometers) values(11, 'ABC-1111', 'Ford', 'Focus', 'White', 2020, 78909);
+insert into cars (id, plate, brand, model, color, car_year, kilometers) values(12, 'AAA-9999', 'Toyota', 'Prius', 'Blue', 2026, 8900);
