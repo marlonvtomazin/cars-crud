@@ -1,5 +1,6 @@
 package com.marlonvtomazin.carscrud.web.dto;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -17,8 +18,8 @@ public class CarCreateDto {
     private String model;
     @NotBlank
     private String color;
-    @NotBlank
+    @NotNull
     private Integer year;
-    @NotBlank
+    @NotNull
     private Integer kilometers;
 }

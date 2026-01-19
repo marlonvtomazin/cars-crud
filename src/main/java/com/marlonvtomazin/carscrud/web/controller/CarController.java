@@ -6,6 +6,7 @@ import com.marlonvtomazin.carscrud.web.dto.CarCreateDto;
 import com.marlonvtomazin.carscrud.web.dto.CarResponseDto;
 import com.marlonvtomazin.carscrud.web.dto.CarUpdateDto;
 import com.marlonvtomazin.carscrud.web.dto.mapper.CarMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class CarController {
     private final CarService carService;
 
     @PostMapping
-    public ResponseEntity<CarResponseDto> create (@RequestBody CarCreateDto createDto) {
+    public ResponseEntity<CarResponseDto> create (@Valid @RequestBody CarCreateDto createDto) {
         Car savedCar = carService.save(CarMapper.toCreateEntity(createDto));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -28,13 +29,13 @@ public class CarController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CarResponseDto> getById (@PathVariable Long id) {
+    public ResponseEntity<CarResponseDto> getById (@Valid @PathVariable Long id) {
         Car foundCar = carService.findById(id);
         return ResponseEntity.ok(CarMapper.toDto(foundCar));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<CarResponseDto> updatePartial(@PathVariable Long id, @RequestBody CarUpdateDto updateDto) {
+    public ResponseEntity<CarResponseDto> updatePartial(@Valid @PathVariable Long id, @RequestBody CarUpdateDto updateDto) {
         Car updatedCar = carService.updatePartial(id, CarMapper.toUpdateEntity(updateDto));
         return ResponseEntity.ok(CarMapper.toDto(updatedCar));
     }
@@ -46,7 +47,7 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Car> delete (@PathVariable Long id) {
+    public ResponseEntity<Car> delete (@Valid @PathVariable Long id) {
         carService.delete(id);
         return ResponseEntity.noContent().build();
     }
