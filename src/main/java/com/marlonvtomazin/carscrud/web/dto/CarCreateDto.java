@@ -19,7 +19,7 @@ public class CarCreateDto {
     @NotBlank(message = "Color can't be blank")
     private String color;
     @NotNull(message = "Year can't be null")
-    private Integer year;
+    private Integer carYear;
     @NotNull(message = "Kilometers can't be null")
     private Integer kilometers;
 }

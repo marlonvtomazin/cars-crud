@@ -9,6 +9,6 @@ public class CarResponseDto {
     private String brand;
     private String model;
     private String color;
-    private Integer year;
+    private Integer carYear;
     private Integer kilometers;
 }

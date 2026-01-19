@@ -47,8 +47,8 @@ public class CarService {
         if (carDetails.getColor() != null) {
             foundCar.setColor(carDetails.getColor());
         }
-        if (carDetails.getYear() != null) {
-            foundCar.setYear(carDetails.getYear());
+        if (carDetails.getCarYear() != null) {
+            foundCar.setCarYear(carDetails.getCarYear());
         }
         if (carDetails.getKilometers() != null) {
             foundCar.setKilometers(carDetails.getKilometers());
