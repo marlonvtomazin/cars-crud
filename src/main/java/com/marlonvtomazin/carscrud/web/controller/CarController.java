@@ -35,7 +35,7 @@ public class CarController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<CarResponseDto> updatePartial(@Valid @PathVariable Long id, @RequestBody CarUpdateDto updateDto) {
+    public ResponseEntity<CarResponseDto> updatePartial(@PathVariable Long id, @Valid @RequestBody CarUpdateDto updateDto) {
         Car updatedCar = carService.updatePartial(id, CarMapper.toUpdateEntity(updateDto));
         return ResponseEntity.ok(CarMapper.toDto(updatedCar));
     }
@@ -47,7 +47,7 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Car> delete (@Valid @PathVariable Long id) {
+    public ResponseEntity<Car> delete (@PathVariable Long id) {
         carService.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -1,6 +1,8 @@
 package com.marlonvtomazin.carscrud.service;
 
 import com.marlonvtomazin.carscrud.entity.Car;
+import com.marlonvtomazin.carscrud.exception.CarUniqueViolationException;
+import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
 import com.marlonvtomazin.carscrud.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,13 +17,17 @@ public class CarService {
 
     @Transactional
     public Car save(Car car) {
-        return carRepository.save(car);
+        try {
+            return carRepository.save(car);
+        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+            throw new CarUniqueViolationException(String.format("Car '%s' already registered", car.getPlate()));
+        }
     }
 
     @Transactional(readOnly = true)
     public Car findById(Long id) {
         return carRepository.findById(id).orElseThrow(
-            () -> new RuntimeException(("Car not found"))
+            () -> new EntityNotFoundException(String.format("Car '%s' not found", id))
         );
     }
 
@@ -29,17 +35,20 @@ public class CarService {
     public Car updatePartial(Long id, Car carDetails) {
         Car foundCar = this.findById(id);
 
+        if (carDetails.getPlate() != null) {
+            foundCar.setPlate(carDetails.getPlate());
+        }
         if (carDetails.getBrand() != null) {
             foundCar.setBrand(carDetails.getBrand());
         }
         if (carDetails.getModel() != null) {
             foundCar.setModel(carDetails.getModel());
         }
+        if (carDetails.getColor() != null) {
+            foundCar.setColor(carDetails.getColor());
+        }
         if (carDetails.getYear() != null) {
             foundCar.setYear(carDetails.getYear());
-        }
-        if (carDetails.getPlate() != null) {
-            foundCar.setPlate(carDetails.getPlate());
         }
         if (carDetails.getKilometers() != null) {
             foundCar.setKilometers(carDetails.getKilometers());
