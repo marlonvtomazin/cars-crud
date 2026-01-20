@@ -29,7 +29,7 @@ public class Car {
     private String color;
 
     @Column(nullable = false)
-    private Integer kilometers;
+    private Integer odometer;
 
     @Column(unique = true, nullable = false, length = 8)
     private String plate;

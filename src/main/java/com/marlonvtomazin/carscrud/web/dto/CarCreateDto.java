@@ -21,5 +21,5 @@ public class CarCreateDto {
     @NotNull(message = "Year can't be null")
     private Integer carYear;
     @NotNull(message = "Kilometers can't be null")
-    private Integer kilometers;
+    private Integer odometer;
 }

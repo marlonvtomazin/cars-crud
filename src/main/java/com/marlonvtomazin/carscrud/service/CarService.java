@@ -50,8 +50,8 @@ public class CarService {
         if (carDetails.getCarYear() != null) {
             foundCar.setCarYear(carDetails.getCarYear());
         }
-        if (carDetails.getKilometers() != null) {
-            foundCar.setKilometers(carDetails.getKilometers());
+        if (carDetails.getOdometer() != null) {
+            foundCar.setOdometer(carDetails.getOdometer());
         }
 
         return carRepository.save(foundCar);
