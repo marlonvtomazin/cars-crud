@@ -35,6 +35,10 @@ public class CarService {
     public Car updatePartial(Long id, Car carDetails) {
         Car foundCar = this.findById(id);
 
+        if (carDetails.getPlate() != null && carRepository.existsByPlateAndIdNot(carDetails.getPlate(), id)) {
+            throw new CarUniqueViolationException(String.format("Car '%s' already registered", carDetails.getPlate()));
+        }
+
         if (carDetails.getPlate() != null) {
             foundCar.setPlate(carDetails.getPlate());
         }
