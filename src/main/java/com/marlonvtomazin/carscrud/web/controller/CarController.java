@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.support.MetaDataAccessException;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tag(name = "Cars", description = "All operations for creating, editing, listing, and deleting items related to cars.")
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/cars")
@@ -41,6 +43,7 @@ public class CarController {
     )
     @PostMapping
     public ResponseEntity<CarResponseDto> create (@Valid @RequestBody CarCreateDto createDto) {
+        log.info("REST request to save Car : {}", createDto.getPlate());
         Car savedCar = carService.save(CarMapper.toCreateEntity(createDto));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -57,6 +60,7 @@ public class CarController {
     )
     @GetMapping("/{id}")
     public ResponseEntity<CarResponseDto> getById (@Valid @PathVariable Long id) {
+        log.info("REST request to get Car by ID : {}", id);
         Car foundCar = carService.findById(id);
         return ResponseEntity.ok(CarMapper.toDto(foundCar));
     }
@@ -73,6 +77,7 @@ public class CarController {
     )
     @PatchMapping("/{id}")
     public ResponseEntity<CarResponseDto> updatePartial(@PathVariable Long id, @Valid @RequestBody CarUpdateDto updateDto) {
+        log.info("REST request to partially update Car ID : {}", id);
         Car updatedCar = carService.updatePartial(id, CarMapper.toUpdateEntity(updateDto));
         return ResponseEntity.ok(CarMapper.toDto(updatedCar));
     }
@@ -85,6 +90,7 @@ public class CarController {
     )
     @GetMapping()
     public ResponseEntity<List<CarResponseDto>> getAll () {
+        log.info("REST request to get all Cars");
         List<Car> foundCars = carService.findAll();
         return ResponseEntity.ok(CarMapper.toListDto(foundCars));
     }
@@ -98,6 +104,7 @@ public class CarController {
     )
     @DeleteMapping("/{id}")
     public ResponseEntity<Car> delete (@PathVariable Long id) {
+        log.info("REST request to delete Car ID : {}", id);
         carService.delete(id);
         return ResponseEntity.noContent().build();
     }
