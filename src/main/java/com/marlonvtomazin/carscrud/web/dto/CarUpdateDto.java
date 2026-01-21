@@ -19,6 +19,6 @@ public class CarUpdateDto {
     private String color;
     @Min(value=1, message = "Year can't be blank")
     private Integer carYear;
-    @Min(value=1, message = "Odometer can't be blank")
+    @Min(value=0, message = "Odometer can't be blank")
     private Integer odometer;
 }
