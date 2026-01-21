@@ -1,7 +1,6 @@
-# 🚗 Car CRUD API
+# Car CRUD API
 
-A RESTful API built with **Java** and **Spring Boot** for managing cars.  
-This project demonstrates clean architecture, REST best practices, database migrations with Flyway, and integration with MySQL using Docker.
+A RESTful API built with **Java** and **Spring Boot** for managing cars.
 
 ---
 
@@ -35,18 +34,42 @@ This project demonstrates clean architecture, REST best practices, database migr
 
 ## 🏗️ Architecture Overview
 ```text
-src/main/java
-└── com.marlonvtomazin.carscrud
-    ├── config        # Application configuration (timezone, etc.)
-    ├── entity        # JPA entities
-    ├── repository    # Spring Data repositories
-    ├── service       # Business logic
-    ├── web
-    │   ├── controller
-    │   ├── dto
-    │   └── exception
-```
+cars-crud
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com.marlonvtomazin.carscrud
+│   │   │       ├── config            # Application configuration (timezone, etc.)
+│   │   │       ├── entity            # JPA entities
+│   │   │       ├── repository        # Spring Data repositories
+│   │   │       ├── service           # Business logic
+│   │   │       ├── web               # Web layer
+│   │   │       │   ├── controller    # REST controllers
+│   │   │       │   ├── dto           # Request/Response DTOs
+│   │   │       │   └── exception     # Web layer exceptions & handlers
+│   │   │       └── CarsCrudApplication.java
+│   │   │
+│   │   └── resources
+│   │       └── db
+│   │           └── migration
+│   │               └── V1__create_table_cars.sql
+│   │
+│   └── test
+│       └── java
+│           └── com.marlonvtomazin.carscrud
+│               ├── config
+│               ├── web
+│               │   └── controller
+│               │       └── CarControllerTest.java
+│               └── CarIT.java
+│
+├── docker-compose.yml
+├── postman
+├── pom.xml
+└── .gitignore
 
+
+```
 ---
 
 ## ▶️ Running the Application
@@ -83,3 +106,6 @@ http://localhost:8080/api/v1/cars
 
 ### 📖 API Documentation (Swagger)
 http://localhost:8080/docs-carscrud.html
+
+#### Postman collection available in the folder:
+- postman/
