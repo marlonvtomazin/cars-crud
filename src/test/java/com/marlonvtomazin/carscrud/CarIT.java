@@ -77,7 +77,20 @@ public class CarIT  {
     @Nested
     @DisplayName("Find car")
     class findCarById {
+        @Test
+        public void shouldFindCar_WhenFieldsAreValid_ReturnStatus200() {
+            CarResponseDto responseBody = testClient
+                    .get()
+                    .uri("/api/v1/cars/10")
+                    .exchange()
+                    .expectStatus().isOk()
+                    .expectBody(CarResponseDto.class)
+                    .returnResult().getResponseBody();
 
+            org.assertj.core.api.Assertions.assertThat(responseBody).isNotNull();
+            org.assertj.core.api.Assertions.assertThat(responseBody.getId()).isEqualTo("10");
+            org.assertj.core.api.Assertions.assertThat(responseBody.getPlate()).isEqualTo("ABC-1234");
+        }
     }
 
 }
