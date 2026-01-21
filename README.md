@@ -4,6 +4,18 @@ A RESTful API built with **Java** and **Spring Boot** for managing cars.
 
 ---
 
+## 🧠 Learning Goals
+
+This project was designed to practice:
+- Clean REST API design
+- Proper exception handling
+- Transaction management
+- Database versioning with Flyway
+- Integration and controller testing
+- Docker-based infrastructure
+- 
+---
+
 ## 📌 Features
 
 - Create a new car
@@ -109,3 +121,51 @@ http://localhost:8080/docs-carscrud.html
 
 #### Postman collection available in the folder:
 - postman/
+
+---
+
+# 🚀 Next Steps (Roadmap)
+
+- This project can evolve into a complete Workshop Management System API.
+Possible next steps include:
+
+### 🔧 Parts Management
+- Register parts (name, manufacturer, price, stock quantity)
+- Update stock automatically when a service is performed
+- Prevent deletion of parts linked to active orders
+- 
+### 👤 Customer Management
+- Register customers (name, document, phone, email)
+- Associate customers with one or more cars
+-  Search customers by name or document
+
+### 🚗 Vehicle Ownership
+- Associate cars with customers
+- List all vehicles from a specific customer
+- Prevent duplicate car plates across customers
+
+### 🧾 Service Orders / Budgets
+- Create service orders (maintenance, repair, inspection)
+- Link cars, customers, and parts to an order
+- Calculate total cost based on parts and labor
+- Order status flow (OPEN → APPROVED → IN_PROGRESS → DONE)
+
+### 🔐 Authentication & Authorization
+- User authentication with JWT
+- Roles (ADMIN, MECHANIC, ATTENDANT)
+- Secure endpoints based on role
+
+### 📊 Reports & Metrics
+- Monthly revenue reports
+- Most used parts
+- Number of services per car or customer
+
+### 🧪 Testing & Quality
+- Increase integration test coverage
+- Add repository tests
+- Add contract tests for the API
+
+### ☁️ Infrastructure & DevOps
+- Dockerize the application (API + database)
+- Environment-based configuration (dev, test, prod)
+- CI pipeline (GitHub Actions)
