@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "796f3d5d-f0ea-4935-a3ae-1d46d503bd92",
+		"name": "Cars - CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48828038",
+		"_collection_link": "https://marlonvtomazin-4333298.postman.co/workspace/Marlon-Tomazin's-Workspace~c1e8e573-3e83-452d-8ad9-bf09a8095d52/collection/48828038-796f3d5d-f0ea-4935-a3ae-1d46d503bd92?action=share&source=collection_link&creator=48828038"
+	},
+	"item": [
+		{
+			"name": "Cars - Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brand\": \"Chevrolet\",\r\n    \"model\": \"Monza\",\r\n    \"year\": 1992,\r\n    \"color\": \"Preto\",\r\n    \"kilometers\": 98540,\r\n    \"plate\": \"BPE-1631\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cars - Find By ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Cars - Update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"plate\": \"ABC-1113\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cars/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cars - Find All",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Cars - Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cars/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cars",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
