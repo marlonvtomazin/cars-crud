@@ -1,6 +1,6 @@
 package com.marlonvtomazin.carscrud.web.dto.mapper;
 
-import com.marlonvtomazin.carscrud.entity.Car;
+import com.marlonvtomazin.carscrud.car.entity.Car;
 import com.marlonvtomazin.carscrud.web.dto.CarCreateDto;
 import com.marlonvtomazin.carscrud.web.dto.CarResponseDto;
 import com.marlonvtomazin.carscrud.web.dto.CarUpdateDto;

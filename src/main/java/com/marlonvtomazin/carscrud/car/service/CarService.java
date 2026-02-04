@@ -1,6 +1,6 @@
 package com.marlonvtomazin.carscrud.service;
 
-import com.marlonvtomazin.carscrud.entity.Car;
+import com.marlonvtomazin.carscrud.car.entity.Car;
 import com.marlonvtomazin.carscrud.exception.CarUniqueViolationException;
 import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
 import com.marlonvtomazin.carscrud.repository.CarRepository;

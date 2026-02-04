@@ -1,7 +1,7 @@
 package com.marlonvtomazin.carscrud.web.controller;
 
-import com.marlonvtomazin.carscrud.entity.Car;
-import com.marlonvtomazin.carscrud.service.CarService;
+import com.marlonvtomazin.carscrud.car.entity.Car;
+import com.marlonvtomazin.carscrud.car.service.CarService;
 import com.marlonvtomazin.carscrud.web.dto.CarCreateDto;
 import com.marlonvtomazin.carscrud.web.dto.CarResponseDto;
 import com.marlonvtomazin.carscrud.web.dto.CarUpdateDto;
@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.support.MetaDataAccessException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

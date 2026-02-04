@@ -1,4 +1,4 @@
-package com.marlonvtomazin.carscrud.web.exception;
+package com.marlonvtomazin.carscrud.car.web.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.servlet.http.HttpServletRequest;

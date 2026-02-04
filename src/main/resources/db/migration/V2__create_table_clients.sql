@@ -1,0 +1,14 @@
+CREATE TABLE clients (
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+        name VARCHAR(255) NOT NULL,
+        document VARCHAR(20) NOT NULL UNIQUE, -- CPF or CNPJ
+        phone VARCHAR(20) NOT NULL,
+        email VARCHAR(255),
+
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+
+        created_by VARCHAR(100) NOT NULL,
+        modified_by VARCHAR(100)
+);
