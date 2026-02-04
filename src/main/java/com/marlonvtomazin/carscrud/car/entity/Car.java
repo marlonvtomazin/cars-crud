@@ -1,4 +1,4 @@
-package com.marlonvtomazin.carscrud.entity;
+package com.marlonvtomazin.carscrud.car.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

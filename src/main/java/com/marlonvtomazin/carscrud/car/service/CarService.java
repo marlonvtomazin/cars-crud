@@ -1,9 +1,9 @@
-package com.marlonvtomazin.carscrud.service;
+package com.marlonvtomazin.carscrud.car.service;
 
 import com.marlonvtomazin.carscrud.car.entity.Car;
 import com.marlonvtomazin.carscrud.exception.CarUniqueViolationException;
 import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
-import com.marlonvtomazin.carscrud.repository.CarRepository;
+import com.marlonvtomazin.carscrud.car.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

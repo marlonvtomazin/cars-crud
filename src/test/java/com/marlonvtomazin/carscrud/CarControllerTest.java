@@ -1,10 +1,10 @@
 package com.marlonvtomazin.carscrud;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.marlonvtomazin.carscrud.entity.Car;
-import com.marlonvtomazin.carscrud.service.CarService;
-import com.marlonvtomazin.carscrud.web.controller.CarController;
-import com.marlonvtomazin.carscrud.web.dto.CarCreateDto;
+import com.marlonvtomazin.carscrud.car.entity.Car;
+import com.marlonvtomazin.carscrud.car.service.CarService;
+import com.marlonvtomazin.carscrud.car.web.controller.CarController;
+import com.marlonvtomazin.carscrud.car.web.dto.CarCreateDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

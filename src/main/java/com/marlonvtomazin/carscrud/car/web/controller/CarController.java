@@ -1,12 +1,12 @@
-package com.marlonvtomazin.carscrud.web.controller;
+package com.marlonvtomazin.carscrud.car.web.controller;
 
 import com.marlonvtomazin.carscrud.car.entity.Car;
 import com.marlonvtomazin.carscrud.car.service.CarService;
-import com.marlonvtomazin.carscrud.web.dto.CarCreateDto;
-import com.marlonvtomazin.carscrud.web.dto.CarResponseDto;
-import com.marlonvtomazin.carscrud.web.dto.CarUpdateDto;
-import com.marlonvtomazin.carscrud.web.dto.mapper.CarMapper;
-import com.marlonvtomazin.carscrud.web.exception.ErrorMessage;
+import com.marlonvtomazin.carscrud.car.web.dto.CarCreateDto;
+import com.marlonvtomazin.carscrud.car.web.dto.CarResponseDto;
+import com.marlonvtomazin.carscrud.car.web.dto.CarUpdateDto;
+import com.marlonvtomazin.carscrud.car.web.dto.mapper.CarMapper;
+import com.marlonvtomazin.carscrud.web.ErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

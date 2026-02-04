@@ -1,9 +1,9 @@
-package com.marlonvtomazin.carscrud.web.dto.mapper;
+package com.marlonvtomazin.carscrud.car.web.dto.mapper;
 
 import com.marlonvtomazin.carscrud.car.entity.Car;
-import com.marlonvtomazin.carscrud.web.dto.CarCreateDto;
-import com.marlonvtomazin.carscrud.web.dto.CarResponseDto;
-import com.marlonvtomazin.carscrud.web.dto.CarUpdateDto;
+import com.marlonvtomazin.carscrud.car.web.dto.CarCreateDto;
+import com.marlonvtomazin.carscrud.car.web.dto.CarResponseDto;
+import com.marlonvtomazin.carscrud.car.web.dto.CarUpdateDto;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;

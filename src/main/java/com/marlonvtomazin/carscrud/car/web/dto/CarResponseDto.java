@@ -1,4 +1,4 @@
-package com.marlonvtomazin.carscrud.web.dto;
+package com.marlonvtomazin.carscrud.car.web.dto;
 
 import lombok.*;
 

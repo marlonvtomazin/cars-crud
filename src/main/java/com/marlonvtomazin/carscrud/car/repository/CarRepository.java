@@ -1,4 +1,4 @@
-package com.marlonvtomazin.carscrud.repository;
+package com.marlonvtomazin.carscrud.car.repository;
 
 import com.marlonvtomazin.carscrud.car.entity.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
