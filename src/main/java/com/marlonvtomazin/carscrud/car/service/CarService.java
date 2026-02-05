@@ -1,7 +1,7 @@
 package com.marlonvtomazin.carscrud.car.service;
 
 import com.marlonvtomazin.carscrud.car.entity.Car;
-import com.marlonvtomazin.carscrud.exception.CarUniqueViolationException;
+import com.marlonvtomazin.carscrud.exception.UniqueConstraintViolationException;
 import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
 import com.marlonvtomazin.carscrud.car.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class CarService {
             return savedCar;
         } catch (org.springframework.dao.DataIntegrityViolationException ex) {
             log.error("Failed to register car: plate '{}' already exists", car.getPlate());
-            throw new CarUniqueViolationException(String.format("Car '%s' already registered", car.getPlate()));
+            throw new UniqueConstraintViolationException(String.format("Car '%s' already registered", car.getPlate()));
         }
     }
 
@@ -48,7 +48,7 @@ public class CarService {
 
         if (carDetails.getPlate() != null && carRepository.existsByPlateAndIdNot(carDetails.getPlate(), id)) {
             log.error("Update failed: plate '{}' is already taken by another car", carDetails.getPlate());
-            throw new CarUniqueViolationException(String.format("Car '%s' already registered", carDetails.getPlate()));
+            throw new UniqueConstraintViolationException(String.format("Car '%s' already registered", carDetails.getPlate()));
         }
 
         if (carDetails.getPlate() != null) {
