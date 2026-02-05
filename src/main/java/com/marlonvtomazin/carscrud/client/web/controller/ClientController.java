@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "Cars", description = "All operations for creating, editing, listing, and deleting items related to cars.")
 @Slf4j
 @RequiredArgsConstructor
@@ -44,5 +46,12 @@ public class ClientController {
         log.info("REST request to partially update Client ID : {}", id);
         Client updatedClient = clientService.updatePartial(id, ClientMapper.toUpdateEntity(updateDto));
         return ResponseEntity.ok(ClientMapper.toDto(updatedClient));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<ClientResponseDto>> getAll () {
+        log.info("REST request to get all Clients");
+        List<Client> foundClients = clientService.findAll();
+        return ResponseEntity.ok(ClientMapper.toListDto(foundClients));
     }
 }

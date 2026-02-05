@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -67,5 +69,11 @@ public class ClientService {
         Client updated = clientRepository.save(foundClient);
         log.info("Client ID {} updated successfully", id);
         return updated;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Client> findAll() {
+        log.debug("Fetching all clients from database");
+        return clientRepository.findAll();
     }
 }

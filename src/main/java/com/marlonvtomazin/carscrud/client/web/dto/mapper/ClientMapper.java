@@ -27,9 +27,8 @@ public class ClientMapper {
     }
 
 
-//
-//    public static List<ClientResponseDto> toListDto(List<Client> clients) {
-//        //return clients.stream().map(client -> toDto(client)).collect(Collectors.toList());
-//        return clients.stream().map(ClientMapper::toDto).collect(Collectors.toList());
-//    }
+    public static List<ClientResponseDto> toListDto(List<Client> clients) {
+        //return clients.stream().map(client -> toDto(client)).collect(Collectors.toList());
+        return clients.stream().map(ClientMapper::toDto).collect(Collectors.toList());
+    }
 }
