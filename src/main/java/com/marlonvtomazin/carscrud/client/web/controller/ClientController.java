@@ -4,6 +4,7 @@ import com.marlonvtomazin.carscrud.car.web.dto.mapper.CarMapper;
 import com.marlonvtomazin.carscrud.client.entity.Client;
 import com.marlonvtomazin.carscrud.client.service.ClientService;
 import com.marlonvtomazin.carscrud.client.web.dto.ClientResponseDto;
+import com.marlonvtomazin.carscrud.client.web.dto.ClientUpdateDto;
 import com.marlonvtomazin.carscrud.client.web.dto.mapper.ClientMapper;
 import com.marlonvtomazin.carscrud.client.web.dto.ClientCreateDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,5 +37,12 @@ public class ClientController {
         log.info("REST request to get Client by ID : {}", id);
         Client foundClient = clientService.findById(id);
         return ResponseEntity.ok(ClientMapper.toDto(foundClient));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ClientResponseDto> updatePartial(@PathVariable Long id, @Valid @RequestBody ClientUpdateDto updateDto) {
+        log.info("REST request to partially update Client ID : {}", id);
+        Client updatedClient = clientService.updatePartial(id, ClientMapper.toUpdateEntity(updateDto));
+        return ResponseEntity.ok(ClientMapper.toDto(updatedClient));
     }
 }

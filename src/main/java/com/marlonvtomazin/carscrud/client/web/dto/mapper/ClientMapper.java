@@ -4,6 +4,7 @@ package com.marlonvtomazin.carscrud.client.web.dto.mapper;
 import com.marlonvtomazin.carscrud.client.entity.Client;
 import com.marlonvtomazin.carscrud.client.web.dto.ClientCreateDto;
 import com.marlonvtomazin.carscrud.client.web.dto.ClientResponseDto;
+import com.marlonvtomazin.carscrud.client.web.dto.ClientUpdateDto;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
@@ -17,13 +18,15 @@ public class ClientMapper {
         return modelMapper.map(clientCreateDto, Client.class);
     }
 
-//    public static Client toUpdateEntity(ClientUpdateDto clientCreateDto){
-//        return modelMapper.map(clientCreateDto, Client.class);
-//    }
-//
+    public static Client toUpdateEntity(ClientUpdateDto clientCreateDto){
+        return modelMapper.map(clientCreateDto, Client.class);
+    }
+
     public static ClientResponseDto toDto(Client car){
         return modelMapper.map(car, ClientResponseDto.class);
     }
+
+
 //
 //    public static List<ClientResponseDto> toListDto(List<Client> clients) {
 //        //return clients.stream().map(client -> toDto(client)).collect(Collectors.toList());
