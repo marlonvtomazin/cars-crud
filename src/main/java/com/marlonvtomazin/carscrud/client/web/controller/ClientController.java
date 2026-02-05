@@ -1,5 +1,6 @@
 package com.marlonvtomazin.carscrud.client.web.controller;
 
+import com.marlonvtomazin.carscrud.car.web.dto.mapper.CarMapper;
 import com.marlonvtomazin.carscrud.client.entity.Client;
 import com.marlonvtomazin.carscrud.client.service.ClientService;
 import com.marlonvtomazin.carscrud.client.web.dto.ClientResponseDto;
@@ -11,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Cars", description = "All operations for creating, editing, listing, and deleting items related to cars.")
 @Slf4j
@@ -31,5 +29,12 @@ public class ClientController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(ClientMapper.toDto(savedClient));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientResponseDto> getById (@Valid @PathVariable Long id) {
+        log.info("REST request to get Client by ID : {}", id);
+        Client foundClient = clientService.findById(id);
+        return ResponseEntity.ok(ClientMapper.toDto(foundClient));
     }
 }

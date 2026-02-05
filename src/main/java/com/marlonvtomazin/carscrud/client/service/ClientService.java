@@ -1,9 +1,10 @@
 package com.marlonvtomazin.carscrud.client.service;
 
-import com.marlonvtomazin.carscrud.car.entity.Car;
 import com.marlonvtomazin.carscrud.client.entity.Client;
 import com.marlonvtomazin.carscrud.client.repository.ClientRepository;
-import com.marlonvtomazin.carscrud.exception.CarUniqueViolationException;
+import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
+import com.marlonvtomazin.carscrud.exception.UniqueConstraintViolationException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,24 @@ public class ClientService {
 
     @Transactional
     public Client save(Client client) {
-       Client savedClient = clientRepository.save(client);
-       return savedClient;
-//        try {
-//            Client savedClient = clientRepository.save(client);
-//            log.info("Car registered successfully with ID: {}", savedClient.getId());
-//            return savedClient;
-//        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
-//            log.error("Failed to register client: plate '{}' already exists", client.getDocument());
-//            throw new CarUniqueViolationException(String.format("Car '%s' already registered", client.getName()));
-//        }
+        try {
+            Client savedClient = clientRepository.save(client);
+            log.info("Client registered successfully with ID: {}", savedClient.getId());
+            return savedClient;
+        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+            log.error("Failed to register client: document '{}' already exists", client.getDocument());
+            throw new UniqueConstraintViolationException(String.format("Client '%s' already registered", client.getName()));
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Client findById(@Valid Long id) {
+        log.debug("Searching for client with ID: {}", id);
+        return clientRepository.findById(id).orElseThrow(
+                () -> {
+                    log.warn("Search failed: client with ID {} not found", id);
+                    return new EntityNotFoundException(String.format("Client '%s' not found", id));
+                }
+        );
     }
 }
