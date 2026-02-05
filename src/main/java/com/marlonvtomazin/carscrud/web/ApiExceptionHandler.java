@@ -1,6 +1,6 @@
 package com.marlonvtomazin.carscrud.web;
 
-import com.marlonvtomazin.carscrud.exception.CarUniqueViolationException;
+import com.marlonvtomazin.carscrud.exception.UniqueConstraintViolationException;
 import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class ApiExceptionHandler {
                 .body(new ErrorMessage(request, HttpStatus.NOT_FOUND, ex.getMessage()));
     }
 
-    @ExceptionHandler(CarUniqueViolationException.class)
+    @ExceptionHandler(UniqueConstraintViolationException.class)
     public ResponseEntity<ErrorMessage> uniqueViolationException(RuntimeException ex, HttpServletRequest request) {
 
         log.error("Api error(uniqueViolationException): ", ex);
