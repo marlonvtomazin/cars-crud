@@ -1,5 +1,6 @@
 package com.marlonvtomazin.carscrud.client.web.controller;
 
+import com.marlonvtomazin.carscrud.car.entity.Car;
 import com.marlonvtomazin.carscrud.car.web.dto.mapper.CarMapper;
 import com.marlonvtomazin.carscrud.client.entity.Client;
 import com.marlonvtomazin.carscrud.client.service.ClientService;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Cars", description = "All operations for creating, editing, listing, and deleting items related to cars.")
+@Tag(name = "Clients", description = "All operations for creating, editing, listing, and deleting items related to clients.")
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -53,5 +54,12 @@ public class ClientController {
         log.info("REST request to get all Clients");
         List<Client> foundClients = clientService.findAll();
         return ResponseEntity.ok(ClientMapper.toListDto(foundClients));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Client> delete (@PathVariable Long id) {
+        log.info("REST request to delete Client ID : {}", id);
+        clientService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

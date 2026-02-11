@@ -1,6 +1,5 @@
 package com.marlonvtomazin.carscrud.client.service;
 
-import com.marlonvtomazin.carscrud.car.entity.Car;
 import com.marlonvtomazin.carscrud.client.entity.Client;
 import com.marlonvtomazin.carscrud.client.repository.ClientRepository;
 import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
@@ -75,5 +74,13 @@ public class ClientService {
     public List<Client> findAll() {
         log.debug("Fetching all clients from database");
         return clientRepository.findAll();
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        log.info("Request to delete client with ID: {}", id);
+        Client foundClient = this.findById(id);
+        clientRepository.delete(foundClient);
+        log.info("Client ID {} deleted successfully", id);
     }
 }
