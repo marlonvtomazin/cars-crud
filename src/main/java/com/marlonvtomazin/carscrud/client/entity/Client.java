@@ -1,5 +1,6 @@
 package com.marlonvtomazin.carscrud.client.entity;
 
+import com.marlonvtomazin.carscrud.car.entity.Car;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor
@@ -51,6 +54,9 @@ public class Client {
     @LastModifiedBy
     @Column(name = "modified_by")
     private String modifiedBy;
+
+    @OneToMany(mappedBy = "client")
+    private List<Car> cars = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

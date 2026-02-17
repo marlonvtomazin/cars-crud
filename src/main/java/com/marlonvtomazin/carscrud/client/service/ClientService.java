@@ -2,6 +2,7 @@ package com.marlonvtomazin.carscrud.client.service;
 
 import com.marlonvtomazin.carscrud.client.entity.Client;
 import com.marlonvtomazin.carscrud.client.repository.ClientRepository;
+import com.marlonvtomazin.carscrud.exception.BusinessException;
 import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
 import com.marlonvtomazin.carscrud.exception.UniqueConstraintViolationException;
 import jakarta.validation.Valid;
@@ -80,6 +81,14 @@ public class ClientService {
     public void delete(Long id) {
         log.info("Request to delete client with ID: {}", id);
         Client foundClient = this.findById(id);
+
+        if (!foundClient.getCars().isEmpty()) {
+            log.warn("Delete blocked: client ID {} has registered cars", id);
+            throw new BusinessException(
+                    "Client has registered cars and cannot be deleted"
+            );
+        }
+
         clientRepository.delete(foundClient);
         log.info("Client ID {} deleted successfully", id);
     }

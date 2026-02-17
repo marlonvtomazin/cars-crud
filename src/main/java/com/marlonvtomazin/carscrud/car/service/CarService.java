@@ -1,6 +1,8 @@
 package com.marlonvtomazin.carscrud.car.service;
 
 import com.marlonvtomazin.carscrud.car.entity.Car;
+import com.marlonvtomazin.carscrud.client.entity.Client;
+import com.marlonvtomazin.carscrud.client.repository.ClientRepository;
 import com.marlonvtomazin.carscrud.exception.UniqueConstraintViolationException;
 import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
 import com.marlonvtomazin.carscrud.car.repository.CarRepository;
@@ -16,17 +18,32 @@ import java.util.List;
 @Service
 public class CarService {
     private final CarRepository carRepository;
+    private final ClientRepository clientRepository;
 
     @Transactional
-    public Car save(Car car) {
+    public Car save(Car car, Long clientId) {
+
         log.info("Attempting to register new car with plate: {}", car.getPlate());
+
+        Client client = clientRepository.findById(clientId)
+                .orElseThrow(() -> {
+                    log.warn("Client with ID {} not found", clientId);
+                    return new EntityNotFoundException(
+                            String.format("Client '%s' not found", clientId)
+                    );
+                });
+
+        car.setClient(client);
+
         try {
             Car savedCar = carRepository.save(car);
             log.info("Car registered successfully with ID: {}", savedCar.getId());
             return savedCar;
         } catch (org.springframework.dao.DataIntegrityViolationException ex) {
             log.error("Failed to register car: plate '{}' already exists", car.getPlate());
-            throw new UniqueConstraintViolationException(String.format("Car '%s' already registered", car.getPlate()));
+            throw new UniqueConstraintViolationException(
+                    String.format("Car '%s' already registered", car.getPlate())
+            );
         }
     }
 

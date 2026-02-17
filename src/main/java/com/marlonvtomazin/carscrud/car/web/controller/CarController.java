@@ -43,7 +43,7 @@ public class CarController {
     @PostMapping
     public ResponseEntity<CarResponseDto> create (@Valid @RequestBody CarCreateDto createDto) {
         log.info("REST request to save Car : {}", createDto.getPlate());
-        Car savedCar = carService.save(CarMapper.toCreateEntity(createDto));
+        Car savedCar = carService.save(CarMapper.toCreateEntity(createDto), createDto.getClientId());
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(CarMapper.toDto(savedCar));

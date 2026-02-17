@@ -22,4 +22,7 @@ public class CarCreateDto {
     private Integer carYear;
     @NotNull(message = "Kilometers can't be null")
     private Integer odometer;
+
+    @NotNull
+    private Long clientId;
 }

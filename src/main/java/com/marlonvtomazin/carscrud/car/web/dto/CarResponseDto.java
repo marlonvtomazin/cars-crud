@@ -11,4 +11,5 @@ public class CarResponseDto {
     private String color;
     private Integer carYear;
     private Integer odometer;
+    private String clientId;
 }

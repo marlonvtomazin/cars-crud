@@ -1,5 +1,7 @@
 package com.marlonvtomazin.carscrud.car.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.marlonvtomazin.carscrud.client.entity.Client;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +35,11 @@ public class Car {
 
     @Column(unique = true, nullable = false, length = 8)
     private String plate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", nullable = false)
+    @JsonIgnore
+    private Client client;
 
     @Override
     public boolean equals(Object o) {

@@ -14,7 +14,14 @@ public class CarMapper {
 
     // Could be same method for both but using two is easier to control the flow
     public static Car toCreateEntity(CarCreateDto carCreateDto){
-        return modelMapper.map(carCreateDto, Car.class);
+        Car car = new Car();
+        car.setBrand(carCreateDto.getBrand());
+        car.setModel(carCreateDto.getModel());
+        car.setCarYear(carCreateDto.getCarYear());
+        car.setColor(carCreateDto.getColor());
+        car.setOdometer(carCreateDto.getOdometer());
+        car.setPlate(carCreateDto.getPlate());
+        return car;
     }
 
     public static Car toUpdateEntity(CarUpdateDto carCreateDto){

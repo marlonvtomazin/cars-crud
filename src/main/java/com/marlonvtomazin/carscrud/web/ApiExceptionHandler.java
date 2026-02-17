@@ -1,5 +1,6 @@
 package com.marlonvtomazin.carscrud.web;
 
+import com.marlonvtomazin.carscrud.exception.BusinessException;
 import com.marlonvtomazin.carscrud.exception.UniqueConstraintViolationException;
 import com.marlonvtomazin.carscrud.exception.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,5 +44,20 @@ public class ApiExceptionHandler {
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(new ErrorMessage(request, HttpStatus.UNPROCESSABLE_ENTITY, "Invalid field(s).", result));
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ErrorMessage> handleBusinessException(BusinessException ex, HttpServletRequest request) {
+
+        log.error("Api error(handleBusinessException): ", ex);
+        ErrorMessage error = new ErrorMessage(
+                request,
+                HttpStatus.CONFLICT,
+                ex.getMessage()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(error);
     }
 }
